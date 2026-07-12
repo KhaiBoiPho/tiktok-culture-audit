@@ -345,9 +345,27 @@ export default function App() {
 
         <div className="foot__appendix">
           <h4>Phụ lục AI</h4>
+          <ul className="foot__appendix-list">
+            {[
+              {
+                tool: 'ChatGPT',
+                purpose: 'Tra cứu, tổng hợp thông tin nền và lên dàn ý ban đầu',
+                scope: 'Phần nội dung audit 6 dạng TikTok và insight tổng kết',
+              },
+              {
+                tool: 'Claude',
+                purpose: 'Code, thiết kế giao diện và biên tập lại câu chữ',
+                scope: 'Toàn bộ landing page (bố cục, style, hiệu ứng)',
+              },
+            ].map((a) => (
+              <li key={a.tool}>
+                <strong>{a.tool}</strong> — {a.purpose}
+                <span className="foot__appendix-scope">{a.scope}</span>
+              </li>
+            ))}
+          </ul>
           <p className="foot__appendix-note">
-            [ Nhóm điền vào đây: liệt kê công cụ AI đã sử dụng (tên công cụ · mục đích ·
-            phần nội dung được hỗ trợ) theo yêu cầu đề bài. ]
+            Nội dung đã được nhóm kiểm tra, chỉnh sửa và chịu trách nhiệm trước khi đăng tải.
           </p>
         </div>
 
