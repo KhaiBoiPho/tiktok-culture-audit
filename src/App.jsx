@@ -1,6 +1,14 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { pillars, audits, bonus, viralFactors, insights } from './data.js'
+import img01 from './assets/audit/1.jpg'
+import img02 from './assets/audit/2.jpg'
+import img03 from './assets/audit/3.webp'
+import img04 from './assets/audit/4.png'
+import img05 from './assets/audit/5.jpg'
+import img06 from './assets/audit/6.jpg'
+
+const auditImages = [img01, img02, img03, img04, img05]
 
 /* ---------- helpers ---------- */
 
@@ -33,14 +41,19 @@ function SectionTag({ index, children }) {
 
 /* ---------- audit card ---------- */
 
-function AuditCard({ item, flip, bonus = false }) {
+function AuditCard({ item, flip, bonus = false, image }) {
   return (
     <Reveal className={`audit ${flip ? 'audit--flip' : ''} ${bonus ? 'audit--bonus' : ''}`}>
       <div className="audit__frame">
         <div className="audit__phone">
-          <div className="audit__notch" />
           <div className="audit__screen">
-            <span className="audit__bignum">{item.no}</span>
+            {image && (
+              <>
+                <div className="audit__imgbg" style={{ backgroundImage: `url(${image})` }} />
+                <img src={image} alt={item.title} className="audit__img" />
+              </>
+            )}
+            <span className="audit__no">{item.no}</span>
             {bonus && <span className="audit__badge">Emerging</span>}
             <div className="audit__scrollcue">
               <span /><span /><span />
@@ -245,9 +258,9 @@ export default function App() {
 
         <div className="audit-list">
           {audits.map((a, i) => (
-            <AuditCard key={a.no} item={a} flip={i % 2 === 1} />
+            <AuditCard key={a.no} item={a} flip={i % 2 === 1} image={auditImages[i]} />
           ))}
-          <AuditCard item={bonus} flip={audits.length % 2 === 1} bonus />
+          <AuditCard item={bonus} flip={audits.length % 2 === 1} bonus image={img06} />
         </div>
       </section>
 
